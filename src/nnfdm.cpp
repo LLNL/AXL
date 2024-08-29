@@ -170,6 +170,7 @@ int nnfdm_start(int id)
     {
         char* src_filename = kvtree_elem_key(elem);
         kvtree* elem_hash = kvtree_elem_hash(elem);
+        const std::string dm_profile{"scr"};
  
         /* get the destination for this file */
         char* dst_filename;
@@ -185,9 +186,11 @@ int nnfdm_start(int id)
             , true                      // If true, store stdout in DataMovementStatusResponse.Message when the command is successful. Failure output is always contained in the message.
             , -1                        // The number of slots specified in the MPI hostfile. A value of 0 disables the use of slots in the hostfile. -1 will defer to the server side configuration.
             , -1                        // The number of max_slots specified in the MPI hostfile. A value of 0 disables the use of max_slots in the hostfile. -1 will defer to the server side configuration.
-            , "scr"                     // Data movement profile.  Empty will default to the default profile.
+            , dm_profile                // Data movement profile.  Empty will default to the default profile.
         );
         
+        AXL_DBG(1, "create_request(%s, %s, ..., %s)", src_filename, dst_filename, dm_profile.c_str() );
+
         nnfdm::CreateResponse create_response;
         nnfdm::RPCStatus rpc_status = nnfdm_client->Create( *nnfdm_workflow, create_request, &create_response);
         if (!rpc_status.ok()) {
