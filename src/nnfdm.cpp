@@ -181,6 +181,7 @@ int nnfdm_start(int id)
               std::string{src_filename} // Source file or directory
             , std::string{dst_filename} // Destination file or directory 
             , false                     // If True, the data movement command runs `/bin/true` rather than perform actual data movement
+            , ""                        // mpirun command line options
             , ""                        // Extra options to pass to `dcp` if present in the Data Movement command.
             , false                     // If true, enable server-side logging of stdout when the command is successful. Failures output is always logged.
             , true                      // If true, store stdout in DataMovementStatusResponse.Message when the command is successful. Failure output is always contained in the message.

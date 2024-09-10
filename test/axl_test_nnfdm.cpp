@@ -51,6 +51,7 @@ int main(int argc, char** argv)
         CreateRequest create_request(    "/mnt/nnf/854e2467-968a-4f40-aa8c-4ac53cb86866-0/foo"
                                        , "/p/lslide/martymcf/bar"
                                        , false                     // If True, the data movement command runs `/bin/true` rather than perform actual data movement
+                                       , ""                        // mpirun command line options
                                        , ""                        // Extra options to pass to `dcp` if present in the Data Movement command.
                                        , false                     // If true, enable server-side logging of stdout when the command is successful. Failures output is always logged.
                                        , true                      // If true, store stdout in DataMovementStatusResponse.Message when the command is successful. Failure output is always contained in the message.
